@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1.0">
+    <title>Street Fighter Memory Match</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="http://learning-fuze.github.io/memory_match/v0.1/script.js">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body background="assets/bgimage.jpg">
+
+<!--Top Header-->
+
+<div class="container-fluid header">
+    <div class="row">
+        <div class="col-sm-12 top-bar">
+
+            <!--Attempts Progress Bar Panel-->
+
+            <div class="col-sm-5">
+                <div class="panel-heading text-center"><div class="progress progressbar" id="attempts"><div class="value"></div></div></div>
+            </div>
+
+            <!--Games Played Progress Bar Panel-->
+
+            <div class="col-sm-2">
+                <div class="panel-heading text-center"><div id="time"></div></div>
+            </div>
+
+            <!--Accuracy Progress Bar Panel-->
+
+            <div class="col-sm-5">
+                <div class="panel-heading text-center"><div class="progress progressbar" id="accuracy"><div class="value"></div></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Start Game/Reset and Links Panel-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel-group">
+
+                <div class="panel-heading text-center"><img src="assets/logo.png" class="logo"></div>
+
+                <div class="panel-heading">
+                    <div class="progress progressbar" id="games-played"><div class="value"></div></div>
+                    <button type="reset" class="btn btn-success btn-block">START GAME</button>
+                    <button type="reset" class="btn btn-danger btn-block">RESET STATS</button>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center"><h3><a href="index.html">GAME PAGE</a></h3></div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center"><h3><a href="#">SETTINGS</a></h3></div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center"><h3><a href="about_me.html">ABOUT ME</a></h3></div>
+                </div>
+
+                <div class="panel-heading text-center"">
+                    <span class="glyphicon glyphicon-volume-up"></span>
+                    <span class="glyphicon glyphicon-volume-off"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Game Play Area-->
+
+        <div class="col-sm-9">
+
+            <!--First row of cards-->
+
+            <div class ="row">
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back1.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back2.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back3.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back4.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back5.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back6.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+            </div>
+
+            <!--Second row of cards-->
+
+            <div class ="row">
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back7.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back8.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back9.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back3.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back2.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back1.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+            </div>
+
+            <!--Third row of cards-->
+
+            <div class ="row">
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back6.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back5.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back4.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back9.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back7.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+                <div class="col-sm-2 card">
+                    <div class="back"><img src="assets/back8.gif"></div>
+                    <div class="front"><img src="assets/front.png"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--Bootstrap Modal - Start and End of Game-->
+
+<div class="container">
+
+    <!-- Modal -->
+    <div class="modal fade" id="fightModal" role="dialog">
+        <div class="modal-dialog fight"><img src="assets/fight.png"></div>
+    </div>
+
+    <div class="modal fade" id="winModal" role="dialog">
+        <div class="modal-dialog win"><img src="assets/you_win.png"></div>
+    </div>
+
+</div>
+
+</body>
+
+</html>

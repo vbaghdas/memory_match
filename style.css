@@ -1,0 +1,172 @@
+/*Apply font to entire body*/
+
+body {
+    font-family: 'Permanent Marker', cursive;
+}
+
+div.container.top {
+    margin-top: 4vh;
+}
+
+/*Header Size*/
+
+div.col-sm-12.top-bar {
+    height: 22vh;
+}
+
+div.col-sm-2.top-bar.panel-heading {
+    padding: 0;
+}
+
+/*Logo Position*/
+
+.logo {
+    position: relative;
+    bottom: 1.25em;
+    right: 4em;
+}
+
+/*Front and Back Cards*/
+
+.front > img {
+    position: relative;
+}
+
+.back > img {
+    position: absolute;
+    height: 215px;
+    width: 150px;
+}
+
+/*Modal for start and end of game*/
+
+.win {
+    position: fixed;
+    top: 20%;
+    left: 20%;
+}
+
+.fight {
+    position: fixed;
+    top: 20%;
+    left: 25%;
+}
+
+/*Links*/
+
+a {
+    color: #333333;
+}
+
+a:hover {
+    color: orange;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+/*Timer*/
+
+#time {
+    position: relative;
+    bottom: 5vh;
+    font-size: 10em;
+    color: orange;
+}
+
+#seconds {
+    color: orange;
+    font-size: 4vw;
+}
+
+/*Audio Control*/
+
+.glyphicon-volume-up {
+    color: #337ab7;
+    font-size: 5em;
+}
+
+.glyphicon-volume-off {
+    color: #337ab7;
+    font-size: 5em;
+}
+
+/*Progress Bar*/
+
+#attempts, #accuracy, #games-played {
+    height: 8vh!important;
+    background: #337ab7!important;
+    border: 0!important;
+}
+
+#games-played {
+    height: 4vh!important;
+    background: #337ab7!important;
+    border: 0!important;
+    margin-top: -2.5vh;
+}
+
+#attempts > .value, #accuracy > .value {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2.5em;
+    left: 13vw;
+}
+
+#games-played > .value {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.5em;
+    left: 4vw;
+}
+
+#attempts > .ui-widget-header, #accuracy > .ui-widget-header, #games-played > .ui-widget-header {
+    position: relative;
+    background: orange;
+    border: 0;
+}
+
+.progress {
+    margin-bottom: .75vh;
+}
+
+/*Media queries for font size and logo*/
+
+@media all and (max-width: 1200px) {
+    #attempts > .value, #accuracy > .value {
+        font-size: 2em;
+    }
+
+    #games-played > .value, {
+        font-size: 1.5em;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    #attempts > .value, #accuracy > .value {
+        font-size: 1.8em;
+    }
+
+    #games-played > .value {
+        font-size: 1.25em;
+    }
+}
+
+@media all and (max-width: 500px) {
+    #attempts > .value, #accuracy > .value {
+        font-size: 1.5em;
+        left: 7em;
+    }
+
+    #games-played > .value {
+        left: 8.5em;
+    }
+
+    .logo {
+        position: relative;
+        left: 1vw;
+    }
+}
