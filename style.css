@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Permanent Marker', cursive;
+    background: url("assets/bgimage.jpg") no-repeat fixed center;
 }
 
 div.container.top {
