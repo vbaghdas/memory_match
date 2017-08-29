@@ -69,7 +69,7 @@ var second_card_clicked = null;
 var total_possible_matches = 9;
 var match_counter = 0;
 var matches = 0;
-var attempts = 99;
+var attempts = 0;
 var accuracy = 0;
 var games_played = 0;
 
@@ -83,7 +83,7 @@ function card_clicked(card) {
         second_card_clicked = card;
         if ($(first_card_clicked).find('.back > img').attr('src') === $(second_card_clicked).find('.back > img').attr('src')) {
             ++matches;
-            --attempts;
+            ++attempts;
             accuracy = parseInt(matches/attempts * 100);
             ++match_counter;
             first_card_clicked = null;
@@ -95,7 +95,7 @@ function card_clicked(card) {
                 return;
             }
         } else {
-            --attempts;
+            ++attempts;
             accuracy = parseInt(matches/attempts * 100);
             $('.card').off('click');
             setTimeout(function(){

@@ -27,6 +27,9 @@ div.col-sm-2.top-bar.panel-heading {
 }
 
 /*Front and Back Cards*/
+.card{
+    height: 215px;
+}
 
 .front > img {
     position: relative;
