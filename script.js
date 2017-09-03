@@ -12,54 +12,15 @@ function apply_event_handlers(){
         display_stats();
     });
 
-    $('.back').css("display", "none");
-
-    // Stat Audio //
-
-    var timer;
-    var elapsed = 0;
-    var hasBeenClicked = false;
-
-    $('.glyphicon-volume-up').on('click', function(){
-        $("<audio></audio>").attr({
-            'src':'assets/theme.mp3',
-            'volume':0.4,
-            'autoplay':'autoplay'
-        }).appendTo("body");
-    });
-
-    // Stop Audio //
-
-    $('.glyphicon-volume-off').on('click', function(){
-        $("body").children("audio").remove();
-    });
-
-    // Start Game and Timer //
-
-    $('.btn-success').on('click', function(){
-        $('.btn-success').attr('data-toggle', 'modal');
-        $('.btn-success').attr('data-target', '#fightModal');
-        timer = setInterval(function(){
-            $("#time").html(elapsed);
-            if (elapsed == 0 || hasBeenClicked === true){
-                elapsed = 99;
-                hasBeenClicked = false;
-            } else {
-                elapsed -= 1;
-            }
-        },1000);
-    });
-
     // Reset Stats Button //
 
-    $('.btn-danger').on('click', function(){
+    $('.fa-refresh').on('click', function(){
         ++games_played;
         reset_stats();
         display_stats();
-        $('.front').css('visibility', 'visible');
-        hasBeenClicked = true;
     });
 
+    $('.back').css('display', 'none');
 }
 
 // Card Flip Function //
@@ -74,14 +35,15 @@ var accuracy = 0;
 var games_played = 0;
 
 function card_clicked(card) {
-    $(card).find('.front').fadeOut();
+    $(card).addClass('flipped');
+    $(card).find('.front').hide();
     $(card).find('.back').css("display", "block");
     if (first_card_clicked === null) {
         first_card_clicked = card;
         return;
     } else {
         second_card_clicked = card;
-        if ($(first_card_clicked).find('.back > img').attr('src') === $(second_card_clicked).find('.back > img').attr('src')) {
+        if ($(first_card_clicked).find('.back > i').attr('class') === $(second_card_clicked).find('.back > i').attr('class')) {
             ++matches;
             ++attempts;
             accuracy = parseInt(matches/attempts * 100);
@@ -89,30 +51,31 @@ function card_clicked(card) {
             first_card_clicked = null;
             second_card_clicked = null;
             if (match_counter === total_possible_matches) {
-                $('.front').attr('data-toggle', 'modal');
                 $('.front').attr('data-target', '#winModal');
             } else {
                 return;
             }
         } else {
             ++attempts;
-            accuracy = parseInt(matches/attempts * 100);
+            accuracy = parseInt(matches / attempts * 100);
             $('.card').off('click');
             setTimeout(function(){
-                $('.card').on('click', function(){
-                    card_clicked(this);
-                    display_stats();
-                });
-                $(first_card_clicked).find('.back').hide();
-                $(second_card_clicked).find('.back').hide();
-                $(first_card_clicked).find('.front').show();
-                $(second_card_clicked).find('.front').show();
-                first_card_clicked = null;
-                second_card_clicked = null;
-            },2000);
-            return;
+                $(first_card_clicked).removeClass("flipped");
+                $(second_card_clicked).removeClass("flipped");
+                setTimeout(function () {
+                    $('.card').on('click', function () {
+                        card_clicked(this);
+                        display_stats();
+                    });
+                    $(first_card_clicked).find('.back').hide();
+                    $(second_card_clicked).find('.back').hide();
+                    $(first_card_clicked).find('.front').show();
+                    $(second_card_clicked).find('.front').show();
+                    first_card_clicked = null;
+                    second_card_clicked = null;
+                }, 250);
+            }, 1000);
         }
-
     }
 }
 
@@ -121,23 +84,9 @@ function card_clicked(card) {
 // Display Stats //
 
 function display_stats(){
-    $('#games-played > .value').text('Games Played: ' + games_played);
-    $('#attempts > .value').text('Attempts:  ' + attempts);
-    $('#accuracy > .value').text('Accuracy:  ' + accuracy + '%');
-
-    $(function() {
-        $("#games-played").progressbar({
-            value: games_played
-        });
-
-        $("#attempts").progressbar({
-            value: attempts
-        });
-
-        $("#accuracy").progressbar ({
-            value: accuracy
-        });
-    } );
+    $('#games-played').text(games_played);
+    $('#attempts').text(attempts);
+    $('#accuracy').text(accuracy + '%');
 }
 
 // Reset Stats //
@@ -147,4 +96,7 @@ function reset_stats(){
     matches = 0;
     attempts = 0;
     display_stats();
+    $(".card").removeClass("flipped");
+    $('.card').find('.back').hide();
+    $('.card').find('.front').show();
 }
