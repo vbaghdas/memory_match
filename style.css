@@ -2,154 +2,105 @@ body {
     margin: 0;
     background: #222;
     font-family: sans-serif;
-
+    background: url(assets/images/bgimage.png) no-repeat center center fixed;
+    background-size: cover;
+    color: #00F7FF!important;
 }
-.container {
+.main {
     display: flex;
 }
-.header {
-    display: flex;
-    justify-content: center;
-    height: 50%;
-    font-size: 3vw;
-    color: rgba(255,255,255,0.5);
-}
-nav {
-    width: 106px;
+.aside {
+    width: 14vw;
     height: 100vh;
     box-sizing: border-box;
-    padding: 20px 0;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    white-space: nowrap;
-    background: #222;
-    transition: all 0.5s;
     box-shadow: 2px 0 8px #000;
 }
-nav .navitem {
-    color: rgba(0,0,0,0);
-    display: block;
-    position: relative;
-    text-decoration: none;
-    font-size: 24px;
-    padding: 2vw;
-    transition: all 0.1s;
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 13vw;
+    padding: 10px 0 0 20px;
 }
-nav .navitem:hover {
-    color: #fff;
+.volume {
+    font-size: 1.5vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
 }
-nav .navitem:hover i {
-    color: #fff;
+.fa-volume-up {
+    padding: 15px;
 }
-nav .navitem i {
-    font-size: 55px;
-    color: rgba(255,255,255,0.5);
-    padding-right: 2vw;
-    transition: all 0.1s 0.1s;
+.fa-refresh {
+    cursor: pointer;
 }
-nav:hover {
-    width: 31vh;
-    overflow: hidden;
-}
-nav:hover span {
-    color: rgba(255,255,255,0.5);
-    transition: all 0.1s 0.2s;
-}
-nav:hover .navitem {
-    color: rgba(255,255,255,0.5);
-}
-.hidescroll > hr {
-    border: 0;
-    background-color: #202228;
-    height: 1px;
-    margin: 0;
-    box-shadow: 1px 1px 2px #393838;
-}
-.content {
-    flex: 1;
-    background: #222;
-    padding: 10px 0 0 10px;
-    min-width: 736px;
-}
-.content .row{
+#gameArea {
     display: flex;
-}
-.content .row .card {
+    flex-direction: row;
+    flex-wrap: wrap;
     flex: 1;
+    background: rgba(0,0,0,.7);
+    padding: 10px 0 0 10px;
+    cursor: pointer;
+}
+#gameArea .card {
+    flex: 14%;
     margin: 0 10px 10px 0;
-    height: 31vh;
-    text-align: center;
+    height: 32vh;
     display: block;
-    position: relative;
     transform-style: preserve-3d;
     transition: all 0.5s linear;
 }
-.content .row .card .front {
-    flex: 1;
+#gameArea .card .front, #gameArea .card .back  {
     margin: 0;
-    height: 31vh;
+    height: 100%;
     width: 100%;
-    text-align: center;
-    background: #5cb7d6;
     position: absolute;
-    z-index: 1;
+    border-radius: 15px;
+    background-size: 100% 100%;
     transform: rotate3d(0, 1, 0, -180deg);
 }
-.content .row .card .back {
-    flex: 1;
-    margin: 0;
-    height: 31vh;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    background: #FFB568;
-    transform: rotate3d(0, 1, 0, -180deg);
+#gameArea .card .back {
+    background-image: url('assets/images/back.png');
 }
 .flipped {
-    transform: rotate3d(0, 1, 0, -180deg);
+    transform: rotate3d(0, 1, 0, 180deg);
 }
-.fa-5x{
-    padding-top: 11vh;
+.dashboard{
+    box-shadow: 4px 0 16px #000;
+    height: 32vh;
 }
-.options{
-    box-shadow: 2px 0 8px #000;
-    height: 31vh;
-}
-.options p {
-    color: #FFF;
-    font-size: 20px;
+.dashboard p {
+    font-size: 1.8vw;
     margin-top: 10px;
-    padding: 5px 40px 5px 20px;
+    padding: 5px 5px 15px 17px;
 }
-.options h5 {
-    color: #383B42;
+.dashboard h5 {
     padding-left: 20px;
-    margin: 10px 0
+    margin: 10px 0;
+    font-size: 1.25vw;
+    color: #D3D1D1;
 }
-.options ul {
+.dashboard ul {
     padding-left: 0;
 }
-.options ul li {
-    padding: 5px 5px 5px 20px;
-    height: 22px;
-    color: #FFF;
+.dashboard ul li {
+    padding: 15px 0px 5px 20px;
     list-style-type: none;
+    font-size: 1.5vw;
+    color: #FFF;
 }
-.options ul li span {
+.dashboard ul li span {
     margin-left: 20px;
     padding: 2px 5px;
     border-radius: 48%;
-    font-size: 1rem;
-    color: #FFF;
+    font-size: 1.5vw;
 }
-.options .nu {
+.dashboard .nu {
     padding-left: 8px;
     padding-right: 8px
 }
-
-.win {
-    position: fixed;
-    top: 20%;
-    left: 20%;
+.modalWin {
+    transform: translate(-25%,-5%)
 }

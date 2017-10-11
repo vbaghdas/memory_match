@@ -2,145 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <title>HearthStone Memory Match</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="card.js"></script>
+    <script src="game.js"></script>
+    <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
 <body>
-
-<div class="container">
-    <nav>
-        <div class="hidescroll">
-            <a class="navitem" href="#"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a> <hr>
-            <a class="navitem" href="#"><i class="fa fa-cog" aria-hidden="true"></i><span>Settings</span></a> <hr>
-            <a class="navitem" href="#"><i class="fa fa-github" aria-hidden="true"></i><span>Github</span></a> <hr>
-            <a class="navitem" href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>Linked In</span></a> <hr>
-        </div>
-    </nav>
-
-    <div class="content">
-        <div class="row">
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-snapchat fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-twitter-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-facebook-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-snapchat fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-flickr fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-youtube-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-instagram fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-pinterest-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-reddit-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-twitter-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-youtube-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-instagram fa-5x" aria-hidden="true"></i></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-facebook-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-pinterest-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-reddit-square fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-flickr fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-skype fa-5x" aria-hidden="true"></i></div>
-            </div>
-            <div class="card">
-                <div class="front"></div>
-                <div class="back"><i class="fa fa-skype fa-5x" aria-hidden="true"></i></div>
-            </div>
+    
+<div class="main">
+    <div class="aside">
+        <img class="logo" src="assets/images/logo.png">
+        <div class="volume">
+            <i class="fa fa-volume-up fa-1x" aria-hidden="true"></i>
+            <i class="fa fa-volume-off fa-1x" aria-hidden="true"></i>
         </div>
     </div>
 
-    <div class="productsRow">
-        <section class="options">
+    <div id="gameArea"></div>
+
+    <div class="aside">
+        <div class="dashboard">
             <p>Dashboard</p>
             <h5>STATISTICS</h5>
             <ul>
                 <li>Attempts: <span id="attempts"></span></li>
-                <li>Accuracy: <span id="accuracy">%</span></li>
+                <li>Accuracy: <span id="accuracy"></span>%</li>
             </ul>
-        </section>
-
-        <section class="options">
-            <p># Games Played</p>
+        </div>
+        <div class="dashboard">
+            <p>Games Played</p>
             <ul>
-                <li id="games-played"></li>
+                <li id="gamesPlayed"></li>
             </ul>
-        </section>
-
-        <section class="options">
+        </div>
+        <div class="dashboard">
             <p>Reset</p>
             <ul>
                 <li><i class="fa fa-refresh fa-3x" aria-hidden="true"></i></li>
             </ul>
-        </section>
+        </div>
     </div>
-
 </div>
 
-<!--Bootstrap Modal - Start and End of Game-->
-
-<div class="container">
-
-    <!-- Modal -->
-
-    <div class="modal fade" id="winModal" role="dialog">
-        <div class="modal-dialog win"></div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <img class="modalWin" src="assets/images/victory.png">
     </div>
-
 </div>
 
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
