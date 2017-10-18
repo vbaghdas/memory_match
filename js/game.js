@@ -22,13 +22,14 @@ function MemoryMatchGame() {
     //Initializes when the page loads
     this.initGame = function () {
         this.createCards(this.shuffleCards());
-        this.handleResetClick();
+        this.handleReset();
         this.updateStats();
+        this.handleModal();
         this.handleAudioPlay();
         this.handleAudioStop();
     };
 
-    //Randomizes the cards in the array
+    //Randomizes the deck of cards in the array
     this.shuffleCards = function () {
         var images = this.imageList.concat(this.imageList);
         var currentIndex = images.length, temp, randomIndex;
@@ -42,12 +43,12 @@ function MemoryMatchGame() {
         return images;
     };
 
-    //Creates the cards in the deck and instantiates the cards from the DOM
+    //Creates the cards in the deck and instantiates the cards created for the DOM
     this.createCards = function(images){
         for(var i = 0; i < images.length; i++){
             var newCard = new Card(this, images[i]);
             var cardElement = newCard.render();
-            $('#gameArea').append(cardElement);
+            $('#game').append(cardElement);
             this.cardList.push(newCard);
         }
         return this.cardList;
@@ -84,7 +85,6 @@ function MemoryMatchGame() {
     this.playerWins = function() {
         this.gamesPlayed++;
         this.showModal();
-        setTimeout(this.hideModal.bind(this), this.revertTime);
     };
 
     //Reverts the clicked cards list back to its original empty state
@@ -98,6 +98,7 @@ function MemoryMatchGame() {
         this.clearClickedCardsList();
     };
 
+    //Updates and Displays Stats on the DOM
     this.updateStats = function () {
         this.displayStats();
     }
@@ -128,19 +129,29 @@ function MemoryMatchGame() {
     };
 
     //Handles the reset button
-    this.handleResetClick = function () {
+    this.handleReset = function () {
         var $resetButton = $('.fa-refresh');
         $resetButton.click(this.resetStats.bind(this));
     };
 
-    //Targets and shows the victory modal
+    //Show Modal
     this.showModal = function() {
-        $("#myModal").modal('show');
+        $('#modalShadow').show();
+        $('#modalContent').show();
+        $('.container').css('filter', 'blur(2px)');
     }
 
-    //Targets and hides the victory modal
-    this.hideModal = function() {
-        $("#myModal").modal('hide');
+    // Close Modal
+    this.closeModal = function() {
+        $('#modalShadow').hide();
+        $('#modalContent').hide();
+        $('.container').css('filter', 'none');
+    }
+
+    //Click handler will close Modal on shadow and button click.
+    this.handleModal = function() {
+        $("#modalShadow").click(this.closeModal.bind(this));
+        $("#modalContent").click(this.closeModal.bind(this));
     };
 
     //Appends an audio tag to the DOM when the audio on button is clicked

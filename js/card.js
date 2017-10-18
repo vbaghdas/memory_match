@@ -41,7 +41,7 @@ function Card(parentObj, frontImage) {
         this.renderedElement.removeClass('flipped');
     };
 
-    //Targets the front image for identification
+    //Targets the front image
     this.getID = function() {
       return this.frontImage;
     };

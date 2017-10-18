@@ -1,27 +1,30 @@
+/* Body and Containers */
 body {
     margin: 0;
-    background: #222;
     font-family: sans-serif;
-    background: url(assets/images/bgimage.png) no-repeat center center fixed;
-    background-size: cover;
-    color: #00F7FF!important;
+    color: #FFF!important;
 }
-.main {
+.container {
     display: flex;
+    background-color: #222;
 }
-.aside {
+.row {
     width: 14vw;
     height: 100vh;
     box-sizing: border-box;
     box-shadow: 2px 0 8px #000;
 }
+
+/* Logo */
 .logo {
     position: absolute;
     top: 0;
     left: 0;
     width: 13vw;
-    padding: 10px 0 0 20px;
+    padding: 10px 0 0 5px;
 }
+
+/* Volume Control */
 .volume {
     font-size: 1.5vw;
     position: absolute;
@@ -29,13 +32,15 @@ body {
     left: 0;
     cursor: pointer;
 }
-.fa-volume-up {
+.volume > .fa-volume-up {
     padding: 15px;
 }
-.fa-refresh {
-    cursor: pointer;
+.fa:hover {
+    color: #31c8f8;
 }
-#gameArea {
+
+/* Game Area and Card */
+#game {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -44,7 +49,7 @@ body {
     padding: 10px 0 0 10px;
     cursor: pointer;
 }
-#gameArea .card {
+#game > .card {
     flex: 14%;
     margin: 0 10px 10px 0;
     height: 32vh;
@@ -52,7 +57,7 @@ body {
     transform-style: preserve-3d;
     transition: all 0.5s linear;
 }
-#gameArea .card .front, #gameArea .card .back  {
+#game > .card > .front, #game > .card > .back  {
     margin: 0;
     height: 100%;
     width: 100%;
@@ -61,46 +66,69 @@ body {
     background-size: 100% 100%;
     transform: rotate3d(0, 1, 0, -180deg);
 }
-#gameArea .card .back {
-    background-image: url('assets/images/back.png');
+#game > .card > .back {
+    background-image: url('../assets/images/back.png');
 }
-.flipped {
+
+/* Card Flip Animation */
+.card.flipped {
     transform: rotate3d(0, 1, 0, 180deg);
 }
-.dashboard{
+
+/* Stats */
+.stats {
     box-shadow: 4px 0 16px #000;
     height: 32vh;
 }
-.dashboard p {
-    font-size: 1.8vw;
-    margin-top: 10px;
-    padding: 5px 5px 15px 17px;
-}
-.dashboard h5 {
+.stats > h5 {
     padding-left: 20px;
     margin: 10px 0;
     font-size: 1.25vw;
-    color: #D3D1D1;
+    color: rgb(139, 139, 139);
 }
-.dashboard ul {
+.stats > p {
+    font-size: 1.5vw;
+    margin-top: 10px;
+    padding: 5px 5px 15px 17px;
+}
+.stats > ul {
     padding-left: 0;
 }
-.dashboard ul li {
+.stats > ul > li {
     padding: 15px 0px 5px 20px;
     list-style-type: none;
-    font-size: 1.5vw;
+    font-size: 1.25vw;
     color: #FFF;
 }
-.dashboard ul li span {
+.stats > ul > li > span {
     margin-left: 20px;
     padding: 2px 5px;
     border-radius: 48%;
-    font-size: 1.5vw;
+    font-size: 1.25vw;
 }
-.dashboard .nu {
-    padding-left: 8px;
-    padding-right: 8px
+.stats > ul > li > .fa-refresh {
+    cursor: pointer;
 }
-.modalWin {
-    transform: translate(-25%,-5%)
+
+/* Modal */
+#modalShadow {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+}
+#modalContent {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: fadein 3s;
+    display: none;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
