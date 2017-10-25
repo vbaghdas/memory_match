@@ -3,14 +3,14 @@ body {
     margin: 0;
     font-family: sans-serif;
     color: #FFF!important;
+    background: #222;
 }
 .container {
     display: flex;
-    background-color: #222;
+    
 }
 .row {
-    width: 14vw;
-    height: 100vh;
+    width: 12vw;
     box-sizing: border-box;
     box-shadow: 2px 0 8px #000;
 }
@@ -20,7 +20,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 13vw;
+    width: 11vw;
     padding: 10px 0 0 5px;
 }
 
@@ -32,11 +32,15 @@ body {
     left: 0;
     cursor: pointer;
 }
-.volume > .fa-volume-up {
+.volume .fa-volume-up {
     padding: 15px;
 }
 .fa:hover {
     color: #31c8f8;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 /* Game Area and Card */
@@ -45,15 +49,15 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     flex: 1;
-    background: rgba(0,0,0,.7);
-    padding: 10px 0 0 10px;
+    height: 100vh;
+    padding: 5px;
     cursor: pointer;
+    background: rgb(24, 24, 24);
 }
 #game > .card {
     flex: 14%;
-    margin: 0 10px 10px 0;
+    margin: 0 5px 5px 0;
     height: 32vh;
-    display: block;
     transform-style: preserve-3d;
     transition: all 0.5s linear;
 }
@@ -79,34 +83,20 @@ body {
 .stats {
     box-shadow: 4px 0 16px #000;
     height: 32vh;
+    padding: 10px;
 }
-.stats > h5 {
-    padding-left: 20px;
-    margin: 10px 0;
-    font-size: 1.25vw;
+.stats h1 {
+    font-size: 1.75vw;
+}
+.stats h2 {
+    font-size: 1.5vw;
     color: rgb(139, 139, 139);
 }
-.stats > p {
-    font-size: 1.5vw;
-    margin-top: 10px;
-    padding: 5px 5px 15px 17px;
-}
-.stats > ul {
-    padding-left: 0;
-}
-.stats > ul > li {
-    padding: 15px 0px 5px 20px;
-    list-style-type: none;
+.stats p {
     font-size: 1.25vw;
-    color: #FFF;
+    padding-top: 5px;
 }
-.stats > ul > li > span {
-    margin-left: 20px;
-    padding: 2px 5px;
-    border-radius: 48%;
-    font-size: 1.25vw;
-}
-.stats > ul > li > .fa-refresh {
+.stats .fa {
     cursor: pointer;
 }
 
@@ -131,4 +121,26 @@ body {
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+@media screen and (max-width: 535px) {
+    .row {
+        width: 25vw;
+    }
+    .row:nth-child(1) {
+        display: none;
+    }
+    #game > .card {
+        flex: 25%;
+        height: 15vh;
+        margin: 0 5px 10px 5px;
+    }
+    .stats {
+        padding: 2px;
+        text-align: center;
+    }
+    .stats p, .stats h1, .stats h2, .stats #gamesPlayed {
+        font-size: 3.5vw;
+        padding-top: 5px;
+    }
 }
