@@ -110,13 +110,17 @@ body {
     background-color: rgba(0,0,0,0.4);
     display: none;
 }
+#modalContent img {
+    max-width: 100%;
+    height: auto;
+}
 #modalContent {
+    display: none;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     animation: fadein 3s;
-    display: none;
 }
 @keyframes fadein {
     from { opacity: 0; }
