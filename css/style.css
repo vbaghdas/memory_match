@@ -69,6 +69,9 @@ body {
     border-radius: 15px;
     background-size: 100% 100%;
     transform: rotate3d(0, 1, 0, -180deg);
+    -ms-transform: rotate3d(0, 1, 0, -180deg);
+    -webkit-transform: rotate3d(0, 1, 0, -180deg);
+
 }
 #game > .card > .back {
     background-image: url('../assets/images/back.png');
@@ -77,6 +80,8 @@ body {
 /* Card Flip Animation */
 .card.flipped {
     transform: rotate3d(0, 1, 0, 180deg);
+    -ms-transform: rotate3d(0, 1, 0, 180deg);
+    -webkit-transform: rotate3d(0, 1, 0, 180deg);
 }
 
 /* Stats */
@@ -119,6 +124,8 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     animation: fadein 3s;
 }
