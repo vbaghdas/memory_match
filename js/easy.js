@@ -1,4 +1,5 @@
 function EasyGame() {
+    this.clickedCardsList = [];
     this.cardList = [];
     this.matchCount = 0;
     this.matchCounter = 0;
@@ -16,7 +17,13 @@ function EasyGame() {
         'assets/images/easy/front7.jpg',
         'assets/images/easy/front8.jpg',
     ];
-    this.clickedCardsList = [];
+    this.soundList = {
+        'intro': new Audio("assets/sounds/intro.mp3"),
+        'blop': new Audio("assets/sounds/blop.mp3"),
+        'flop': new Audio("assets/sounds/flop.mp3"),
+        'match': new Audio("assets/sounds/match.wav"),
+        'wrong': new Audio("assets/sounds/wrong.wav"),
+    };
 
     //Initializes when the page loads
     this.initGame = function () {
@@ -26,6 +33,7 @@ function EasyGame() {
         this.handleModal();
         this.handleAudioPlay();
         this.handleAudioStop();
+        this.handleCardHover(); 
     };
 
     //Randomizes the deck of cards in the array
@@ -55,6 +63,7 @@ function EasyGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
+        this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
             cardObj.revealSelf();
@@ -67,6 +76,7 @@ function EasyGame() {
                     this.clearClickedCardsList();
                     this.calculateAccuracy();
                     this.handleCardFlipped();
+                    setTimeout( ()=>{ this.soundList.match.play() }, 500);
 
                     if(this.matchCount === this.cardList.length){
                         this.playerWins();
@@ -75,6 +85,7 @@ function EasyGame() {
                 else {
                     this.attempts++;
                     this.calculateAccuracy();
+                    setTimeout( ()=>{ this.soundList.wrong.play() }, 500);
                     setTimeout(this.revertClickedCards.bind(this), this.revertTime);
                 }
             }
@@ -124,8 +135,11 @@ function EasyGame() {
         this.gamesPlayed++;
         this.accuracy = 0;
         this.displayStats();
-        $('.card').find('.back').show();
-        $('.card').removeClass('flipped');
+        $('.flip-container').removeClass('flipped');
+        setTimeout( () => {
+            $('#game-container-easy').html('');
+            this.createCards(this.shuffleCards());
+        }, this.revertTime);
     };
 
     //Handles the reset button
@@ -138,7 +152,7 @@ function EasyGame() {
     this.showModal = function() {
         $('#modal-shadow').show();
         $('#modal-content').show();
-        $('#main-container').css('filter', 'blur(2px)');
+        $('#main-container').css('filter', 'blur(3px)');
     }
 
     // Close Modal
@@ -156,20 +170,15 @@ function EasyGame() {
 
     //Appends an audio tag to the DOM when the audio on button is clicked
     this.handleAudioPlay = function() {
-        $('.volume-container').on('click', '.fa-volume-up', function(){
+        $('.volume-container').on('click', '.fa-volume-up', function() {
             $(this).removeClass('fa-volume-up');
             $(this).addClass('fa-volume-down');
-            $("<audio>").attr({
-                'src':'./assets/audio.mp3',
-                'autoplay':'autoplay'
-            }).appendTo(".volume-container");
         });
     };
 
     //Removes the audio tag from the DOM when the off button is clicked
     this.handleAudioStop = function() {
-        $('.volume-container').on('click', '.fa-volume-down', function(){
-            $(".volume-container").children("audio").remove();
+        $('.volume-container').on('click', '.fa-volume-down', function() {
             $(this).addClass('fa-volume-up');
             $(this).removeClass('fa-volume-down');
         });
@@ -177,8 +186,18 @@ function EasyGame() {
 
     //Remove card from the DOM on match
     this.handleCardFlipped = function() {
-        $('.flipped > .front').fadeOut(2000, function() {
-            $('.revealed').off('click');
+        $('.flipped > .front').fadeTo(this.revertTime, 0, function() {
+            $('.revealed').off('');
+        });
+    }
+
+    //Play sound on card hover
+    this.handleCardHover = function() {
+        $('.card').mouseover( () => {
+            this.soundList.blop.play();
+        });
+        $('.fa').mouseover( () => {
+            this.soundList.blop.play();
         });
     }
 }
