@@ -3,67 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="assets/images/hearthstone.png">
-    <title>Memory Match</title>
+    <link rel="icon" href="assets/images/favicon.png">
+    <title>Trolls | Memory Match</title>
 
-    <!-- Font Awesome Style Sheet -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
+
+    <!-- Font Awesome Style Script -->
     <script src="font-awesome/font-awesome.js"></script>
 
     <!-- jQuery 3.1.0 -->
     <script src="jquery/jquery-3.1.0.js"></script>
 
-    <!-- Card, Game, and Instantiator Scripts -->
-    <script src="js/card.js"></script>
-    <script src="js/game.js"></script>
+    <!-- Memory Match Game Scripts -->
     <script src="js/main.js"></script>
-
+    <script src="js/card.js"></script>
+    <script src="js/easy.js"></script>
+    <script src="js/medium.js"></script>
+    <script src="js/hard.js"></script>
+    
     <!-- Style Sheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
  
-<!-- Start App Container -->
-<div class="container">
+<!-- Main Container -->
+<div id="main-container">
 
-    <!-- Brand Logo  -->
-    <div class="row">
-        <img class="logo" src="assets/images/logo.png">
-        <!-- Volume Control -->
-        <div class="volume">
-            <i class="fa fa-volume-up fa-1x"></i>
-            <i class="fa fa-volume-off fa-1x"></i>
+    <!-- Top Container -->
+    <div id="top-container">
+        <div id="top-logo-container"></div>
+        <div class="volume-container">
+            <i class="fa fa-volume-up" aria-hidden="true"></i>
+        </div>
+        <div class="stats-container">
+            <div class="attempts-container">
+                <p>Attempts: <span class="attempts"></span></p>
+            </div>
+            <div class="accuracy-container">
+                <p>Accuracy: <span class="accuracy"></span>%</p></div>
+            <div class="games-played-container">
+                <p>Played: <span class="games-played"></span></p>
+            </div>
+        </div>
+        <div class="restart-container">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
         </div>
     </div>
+    <!-- End Top Container -->
 
-    <!-- Game Area -->
-    <div id="game"></div>
+    <!-- Game Containers -->
+    <div id="game-container-easy"></div>
+    <div id="game-container-medium"></div>
+    <div id="game-container-hard"></div>
+    <!-- End Game Container -->
 
-    <!-- Stats  -->
-    <div class="row">
-        <!-- Attempts and Accuracy -->
-        <div class="stats">
-            <h1>Dashboard</h1>
-            <h2>STATISTICS</h2>
-            <p>Attempts: <span id="attempts"></span></p>
-            <p>Accuracy: <span id="accuracy"></span>%</p>
+    <!-- Right Container  -->
+    <div id="right-container">
+        <div id="right-logo-container"></div>
+        <div class="volume-container">
+            <i class="fa fa-volume-up"></i>
         </div>
-        <!-- Games Played -->
-        <div class="stats">
-            <h2>Games Played</h2>
-            <p id="gamesPlayed"></p>
+        <div class="stats-container">
+            <div class="attempts-container">
+                <p>Attempts: <span class="attempts"></span></p>
+            </div>
+            <div class="accuracy-container">
+                <p>Accuracy: <span class="accuracy"></span>%</p>
+            </div>
+            <div class="games-played-container">
+                <p>Games Played: <span class="games-played"></span></p>
+            </div>
         </div>
-        <!-- Reset Game -->
-        <div class="stats">
-            <h2>Reset</h2>
-            <i class="fa fa-refresh fa-2x"></i>
+        <div class="restart-container">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
         </div>
     </div>
+    <!-- End Right Container -->
+
 </div>
-<!-- End App Container -->
+<!-- End Main Container -->
 
 <!-- Modal -->
-<div id="modalShadow"></div>
-    <div id="modalContent"><img src="assets/images/victory.png"></div>
+<div id="modal-shadow"></div>
+    <div id="modal-content">
+        <img src="assets/images/victory.gif">
+    </div>
 </div>
 
 </body>

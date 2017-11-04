@@ -1,8 +1,20 @@
 $(document).ready(initApp);
-var game = null;
+// Game Level One
+var easy = null;
+//  Game Level Two
+var medium = null;
+//  Game Level Three
+var hard = null;
 
-//Initiates on page load and instantiates the Game object
+//Initiate on page load and instantiate all game level obects
 function initApp() {
-    game = new MemoryMatchGame();
-    game.initGame();
+    // Game Level One
+    easy = new EasyGame();
+    easy.initGame();
+    // Game Level Two
+    medium = new MediumGame();
+    medium.initGame();
+    // Game Level Three
+    hard = new HardGame();
+    hard.initGame();
 }
