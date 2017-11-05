@@ -257,24 +257,57 @@ i:hover {
     left: 0;
     top: 0;
 }
-#modal-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15px;
-}
 #modal-content {
+    animation: fadeIn 0.5s cubic-bezier(0.165, 0.24, 0.44, 1) forwards;
+    animation-duration: .5s;
+    background: rgba(0,0,0,0.6);
+    border-radius: 5px;
+    padding: 15px;
     display: none;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    animation: fadein 3s;
+    left: 25%;
+    top: 15%;
+    width: 50%;
 }
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+#modal-header h1 {
+    font-size: 2.5vw;
+    text-align: center;
+}
+#modal-body {
+    background: rgba(34,34,34,.5);
+}
+#modal-body img {
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+#modal-footer {
+    padding: 15px 0;
+}
+#button {
+    background: url(../assets/images/button.png);
+    background-size: cover;
+    float: right;
+}
+#button:hover {
+    animation-name: rubberBand;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    cursor: pointer;
+}
+#button p {
+    font-size: 2vw;
+    margin: 2px 10px 0 10px;
+    padding-bottom: 4px;
+}
+@keyframes fadeIn {
+    0% {
+        transform:scale(0);
+    }
+    100% {
+        transform:scale(1.2);
+    }
 }
 
 /*==========================================================

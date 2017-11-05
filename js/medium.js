@@ -20,11 +20,12 @@ function MediumGame() {
         'assets/images/medium/front10.jpg',
     ];
     this.soundList = {
-        'intro': new Audio("assets/sounds/intro.mp3"),
-        'blop': new Audio("assets/sounds/blop.mp3"),
-        'flop': new Audio("assets/sounds/flop.mp3"),
-        'match': new Audio("assets/sounds/match.wav"),
-        'wrong': new Audio("assets/sounds/wrong.wav")
+        'intro' : new Audio("assets/sounds/intro.mp3"),
+        'blop' : new Audio("assets/sounds/blop.mp3"),
+        'flop' : new Audio("assets/sounds/flop.mp3"),
+        'match' : new Audio("assets/sounds/match.wav"),
+        'wrong' : new Audio("assets/sounds/wrong.wav"),
+        'victory' : new Audio("assets/sounds/victory.wav")
     }
 
     //Initializes when the page loads
@@ -65,6 +66,7 @@ function MediumGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
+        this.playerWins();
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
@@ -96,8 +98,10 @@ function MediumGame() {
     //Win handler runs when all cards are matched and targets victory modal
     };
     this.playerWins = function() {
-        this.gamesPlayed++;
+        this.resetStats();
         this.showModal();
+        this.mediumLevelComplete();
+        this.soundList.victory.play();
     };
 
     //Reverts the clicked cards list back to its original empty state
@@ -137,24 +141,38 @@ function MediumGame() {
         this.gamesPlayed++;
         this.accuracy = 0;
         this.displayStats();
+        this.resetGame();
+    };
+
+    // Resets Game
+    this.resetGame = function() {
         $('.flip-container').removeClass('flipped');
         setTimeout( () => {
             $('#game-container-medium').html('');
             this.createCards(this.shuffleCards());
         }, this.revertTime);
-    };
+    }
 
     //Handles the reset button
     this.handleReset = function () {
         var $resetButton = $('.fa-refresh');
-        $resetButton.click(this.resetStats.bind(this));
+        $resetButton.addClass('mediumReset');
+        $('.mediumReset').click(this.resetStats.bind(this));
     };
+
+    // Go to next level hard
+    this.mediumLevelComplete = function() {
+        setTimeout( () => {
+            $('#game-container-medium').css('display', 'none');
+            $('#game-container-hard').css('display', 'flex');
+        }, this.revertTime);
+    }
 
     //Show Modal
     this.showModal = function() {
         $('#modal-shadow').show();
         $('#modal-content').show();
-        $('#main-container').css('filter', 'blur(2px)');
+        $('#main-container').css('filter', 'blur(3px)');
     }
 
     // Close Modal
@@ -164,10 +182,9 @@ function MediumGame() {
         $('#main-container').css('filter', 'none');
     }
 
-    //Click handler will close Modal on shadow and button click.
+    //Close Modal on continue button click
     this.handleModal = function() {
-        $("#modal-shadow").click(this.closeModal.bind(this));
-        $("#modal-content").click(this.closeModal.bind(this));
+        $("#button").click(this.closeModal.bind(this));
     };
 
     //Appends an audio tag to the DOM when the audio on button is clicked

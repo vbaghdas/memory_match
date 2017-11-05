@@ -18,11 +18,12 @@ function EasyGame() {
         'assets/images/easy/front8.jpg',
     ];
     this.soundList = {
-        'intro': new Audio("assets/sounds/intro.mp3"),
-        'blop': new Audio("assets/sounds/blop.mp3"),
-        'flop': new Audio("assets/sounds/flop.mp3"),
-        'match': new Audio("assets/sounds/match.wav"),
-        'wrong': new Audio("assets/sounds/wrong.wav"),
+        'intro' : new Audio("assets/sounds/intro.mp3"),
+        'blop' : new Audio("assets/sounds/blop.mp3"),
+        'flop' : new Audio("assets/sounds/flop.mp3"),
+        'match' : new Audio("assets/sounds/match.wav"),
+        'wrong' : new Audio("assets/sounds/wrong.wav"),
+        'victory' : new Audio("assets/sounds/victory.wav")
     };
 
     //Initializes when the page loads
@@ -56,6 +57,7 @@ function EasyGame() {
             var newCard = new Card(this, images[i]);
             var cardElement = newCard.render();
             $("#game-container-easy").append(cardElement);
+
             this.cardList.push(newCard);
         }
         return this.cardList;
@@ -63,6 +65,7 @@ function EasyGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
+        this.playerWins();
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
@@ -94,8 +97,10 @@ function EasyGame() {
     //Win handler runs when all cards are matched and targets victory modal
     };
     this.playerWins = function() {
-        this.gamesPlayed++;
+        this.resetStats();
         this.showModal();
+        this.easyLevelComplete();
+        this.soundList.victory.play();
     };
 
     //Reverts the clicked cards list back to its original empty state
@@ -135,18 +140,32 @@ function EasyGame() {
         this.gamesPlayed++;
         this.accuracy = 0;
         this.displayStats();
+        this.resetGame();
+    };
+
+    // Resets Game
+    this.resetGame = function() {
         $('.flip-container').removeClass('flipped');
         setTimeout( () => {
             $('#game-container-easy').html('');
             this.createCards(this.shuffleCards());
         }, this.revertTime);
-    };
+    }
 
     //Handles the reset button
     this.handleReset = function () {
         var $resetButton = $('.fa-refresh');
-        $resetButton.click(this.resetStats.bind(this));
+        $resetButton.addClass('easyReset');
+        $('.easyReset').click(this.resetStats.bind(this));
     };
+
+    // Go to next level medium
+    this.easyLevelComplete = function() {
+        setTimeout( () => {
+            $('#game-container-easy').css('display', 'none');
+            $('#game-container-medium').css('display', 'flex');
+        }, this.revertTime);
+    }
 
     //Show Modal
     this.showModal = function() {
@@ -162,10 +181,9 @@ function EasyGame() {
         $('#main-container').css('filter', 'none');
     }
 
-    //Click handler will close Modal on shadow and button click.
+    //Close Modal on continue button click
     this.handleModal = function() {
-        $("#modal-shadow").click(this.closeModal.bind(this));
-        $("#modal-content").click(this.closeModal.bind(this));
+        $("#button").click(this.closeModal.bind(this));
     };
 
     //Appends an audio tag to the DOM when the audio on button is clicked
@@ -193,10 +211,7 @@ function EasyGame() {
 
     //Play sound on card hover
     this.handleCardHover = function() {
-        $('.card').mouseover( () => {
-            this.soundList.blop.play();
-        });
-        $('.fa').mouseover( () => {
+        $('.card, .fa, #button').mouseover( () => {
             this.soundList.blop.play();
         });
     }
