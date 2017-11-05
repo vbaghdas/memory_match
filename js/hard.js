@@ -68,7 +68,6 @@ function HardGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
-        this.playerWins();
         this.soundList.blop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
@@ -164,6 +163,7 @@ function HardGame() {
 
     // Go back to easy level
     this.hardLevelComplete = function() {
+        this.resetGame();
         setTimeout( () => {
             $('#game-container-hard').css('display', 'none');
             $('#game-container-easy').css('display', 'flex');

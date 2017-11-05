@@ -65,7 +65,6 @@ function EasyGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
-        this.playerWins();
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
@@ -161,6 +160,7 @@ function EasyGame() {
 
     // Go to next level medium
     this.easyLevelComplete = function() {
+        this.resetGame();
         setTimeout( () => {
             $('#game-container-easy').css('display', 'none');
             $('#game-container-medium').css('display', 'flex');

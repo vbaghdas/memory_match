@@ -66,7 +66,6 @@ function MediumGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
-        this.playerWins();
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
@@ -162,6 +161,7 @@ function MediumGame() {
 
     // Go to next level hard
     this.mediumLevelComplete = function() {
+        this.resetGame();
         setTimeout( () => {
             $('#game-container-medium').css('display', 'none');
             $('#game-container-hard').css('display', 'flex');
