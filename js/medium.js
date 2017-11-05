@@ -5,7 +5,7 @@ function MediumGame() {
     this.attempts = 0;
     this.gamesPlayed = 0;
     this.accuracy = 0;
-    this.revertTime = 1500;
+    this.revertTime = 1750;
     this.clickedCardsList = [];
     this.imageList = [
         'assets/images/medium/front1.jpg',
@@ -78,7 +78,7 @@ function MediumGame() {
                     this.attempts++;
                     this.clearClickedCardsList();
                     this.calculateAccuracy();
-                    this.handleCardFlipped();
+                    this.handleCardMatch();
                     setTimeout(()=>{ this.soundList.match.play() }, 500);
 
                     if(this.matchCount === this.cardList.length){
@@ -99,7 +99,7 @@ function MediumGame() {
     this.playerWins = function() {
         this.resetStats();
         this.showModal();
-        this.mediumLevelComplete();
+        this.mediumLevelChange();
         this.soundList.victory.play();
     };
 
@@ -160,7 +160,7 @@ function MediumGame() {
     };
 
     // Go to next level hard
-    this.mediumLevelComplete = function() {
+    this.mediumLevelChange = function() {
         this.resetGame();
         setTimeout( () => {
             $('#game-container-medium').css('display', 'none');
@@ -170,9 +170,12 @@ function MediumGame() {
 
     //Show Modal
     this.showModal = function() {
-        $('#modal-shadow').show();
-        $('#modal-content').show();
-        $('#main-container').css('filter', 'blur(3px)');
+        setTimeout(() => {
+            $('#modal-shadow').show();
+            $('#modal-content').show();
+            $('#modal-header>h1').text('Level Two Complete!');
+            $('#main-container').css('filter', 'blur(3px)');
+        }, 500);
     }
 
     // Close Modal
@@ -206,18 +209,15 @@ function MediumGame() {
     }
 
     //Remove card from the DOM on match
-    this.handleCardFlipped = function() {
+    this.handleCardMatch = function() {
         $('.flipped > .front').fadeTo(this.revertTime, 0, function() {
-            $('.revealed').off('');
+            $('.revealed').off('click');
         });
     }
 
     //Play sound on card hover
     this.handleCardHover = function() {
-        $('.card').mouseover( () => {
-            this.soundList.blop.play();
-        });
-        $('.fa').mouseover( () => {
+        $('.card, .fa, #button').mouseover( () => {
             this.soundList.blop.play();
         });
     }

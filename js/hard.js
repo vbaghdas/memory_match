@@ -80,7 +80,7 @@ function HardGame() {
                     this.attempts++;
                     this.clearClickedCardsList();
                     this.calculateAccuracy();
-                    this.handleCardFlipped();
+                    this.handleCardMatch();
                     setTimeout(()=>{ this.soundList.match.play() }, 500);
 
                     if(this.matchCount === this.cardList.length){
@@ -101,7 +101,7 @@ function HardGame() {
     this.playerWins = function() {
         this.resetStats();
         this.showModal();
-        this.hardLevelComplete();
+        this.hardLevelChange();
         this.soundList.victory.play();
     };
 
@@ -162,7 +162,7 @@ function HardGame() {
     };
 
     // Go back to easy level
-    this.hardLevelComplete = function() {
+    this.hardLevelChange = function() {
         this.resetGame();
         setTimeout( () => {
             $('#game-container-hard').css('display', 'none');
@@ -172,9 +172,12 @@ function HardGame() {
 
     //Show Modal
     this.showModal = function() {
-        $('#modal-shadow').show();
-        $('#modal-content').show();
-        $('#main-container').css('filter', 'blur(3px)');
+        setTimeout(() => {
+            $('#modal-shadow').show();
+            $('#modal-content').show();
+            $('#modal-header>h1').text('WooHoo! You Did It!!!');
+            $('#main-container').css('filter', 'blur(3px)');
+        }, 500);
     }
 
     // Close Modal
@@ -208,7 +211,7 @@ function HardGame() {
     }
 
     //Remove card from the DOM on match
-    this.handleCardFlipped = function() {
+    this.handleCardMatch = function() {
         $('.flipped > .front').fadeTo(this.revertTime, 0, function() {
             $('.revealed').off('');
         });
@@ -216,10 +219,7 @@ function HardGame() {
 
     //Play sound on card hover
     this.handleCardHover = function() {
-        $('.card').mouseover( () => {
-            this.soundList.blop.play();
-        });
-        $('.fa').mouseover( () => {
+        $('.card, .fa, #button').mouseover( () => {
             this.soundList.blop.play();
         });
     }

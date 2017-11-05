@@ -6,7 +6,7 @@ function EasyGame() {
     this.attempts = 0;
     this.gamesPlayed = 0;
     this.accuracy = 0;
-    this.revertTime = 1500;
+    this.revertTime = 2000;
     this.imageList = [
         'assets/images/easy/front1.jpg',
         'assets/images/easy/front2.jpg',
@@ -77,7 +77,7 @@ function EasyGame() {
                     this.attempts++;
                     this.clearClickedCardsList();
                     this.calculateAccuracy();
-                    this.handleCardFlipped();
+                    this.handleCardMatch();
                     setTimeout( ()=>{ this.soundList.match.play() }, 500);
 
                     if(this.matchCount === this.cardList.length){
@@ -98,7 +98,7 @@ function EasyGame() {
     this.playerWins = function() {
         this.resetStats();
         this.showModal();
-        this.easyLevelComplete();
+        this.easyLevelChange();
         this.soundList.victory.play();
     };
 
@@ -159,7 +159,7 @@ function EasyGame() {
     };
 
     // Go to next level medium
-    this.easyLevelComplete = function() {
+    this.easyLevelChange = function() {
         this.resetGame();
         setTimeout( () => {
             $('#game-container-easy').css('display', 'none');
@@ -169,9 +169,12 @@ function EasyGame() {
 
     //Show Modal
     this.showModal = function() {
-        $('#modal-shadow').show();
-        $('#modal-content').show();
-        $('#main-container').css('filter', 'blur(3px)');
+        setTimeout(() => {
+            $('#modal-shadow').show();
+            $('#modal-content').show();
+            $('#modal-header>h1').text('Level One Complete!');
+            $('#main-container').css('filter', 'blur(3px)');
+        }, 500);
     }
 
     // Close Modal
@@ -203,9 +206,9 @@ function EasyGame() {
     }
 
     //Remove card from the DOM on match
-    this.handleCardFlipped = function() {
+    this.handleCardMatch = function() {
         $('.flipped > .front').fadeTo(this.revertTime, 0, function() {
-            $('.revealed').off('');
+            $('.revealed').off('click');
         });
     }
 

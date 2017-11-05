@@ -127,7 +127,8 @@ i:hover {
     flex-wrap: wrap;
     cursor: pointer;
     background: url(../assets/images/trolls.png) no-repeat;
-    background-size: 135% 100%;
+    background-size: 100% 75%;
+    background-position-y: center;
     width: 75%;
 }
 #game-container-medium {
