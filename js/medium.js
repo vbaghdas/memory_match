@@ -3,7 +3,6 @@ function MediumGame() {
     this.matchCount = 0;
     this.matchCounter = 0;
     this.attempts = 0;
-    this.gamesPlayed = 0;
     this.accuracy = 0;
     this.revertTime = 1750;
     this.clickedCardsList = [];
@@ -36,7 +35,7 @@ function MediumGame() {
         this.handleModal();
         this.handleAudioPlay();
         this.handleAudioStop();
-        this.handleCardHover();
+        this.handleElementHover();
     };
 
     //Randomizes the deck of cards in the array
@@ -97,7 +96,6 @@ function MediumGame() {
     //Win handler runs when all cards are matched and targets victory modal
     };
     this.playerWins = function() {
-        this.resetStats();
         this.showModal();
         this.mediumLevelChange();
         this.soundList.victory.play();
@@ -121,7 +119,6 @@ function MediumGame() {
 
     //Displays the stats on the DOM
     this.displayStats = function() {
-        $(".games-played").text(this.gamesPlayed);
         $(".attempts").text(this.attempts);
         $(".accuracy").text(this.accuracy);
     };
@@ -134,10 +131,10 @@ function MediumGame() {
 
    //Resets all the stats back to its original state and flips the cards over
     this.resetStats = function() {
+        this.cardList = [];
         this.matchCount = 0;
         this.matchCounter = 0;
         this.attempts = 0;
-        this.gamesPlayed++;
         this.accuracy = 0;
         this.displayStats();
         this.resetGame();
@@ -161,8 +158,9 @@ function MediumGame() {
 
     // Go to next level hard
     this.mediumLevelChange = function() {
-        this.resetGame();
         setTimeout( () => {
+            this.resetStats();
+            $(".level").text('Hard');
             $('#game-container-medium').css('display', 'none');
             $('#game-container-hard').css('display', 'flex');
         }, this.revertTime);
@@ -170,10 +168,12 @@ function MediumGame() {
 
     //Show Modal
     this.showModal = function() {
-        setTimeout(() => {
+        setTimeout( () => {
             $('#modal-shadow').show();
             $('#modal-content').show();
-            $('#modal-header>h1').text('Level Two Complete!');
+            $('#modal-header>h1').text('Second Level Complete!');
+            $('#modal-body > img').attr('src', 'assets/images/victory.gif');
+            $('#button > p').text('continue');
             $('#main-container').css('filter', 'blur(3px)');
         }, 500);
     }
@@ -190,19 +190,17 @@ function MediumGame() {
         $("#button").click(this.closeModal.bind(this));
     };
 
-    //Appends an audio tag to the DOM when the audio on button is clicked
+   //Remove volume-up font awesome class and replace with volume-down
     this.handleAudioPlay = function() {
         $('.volume-container').on('click', '.fa-volume-up', () => {
             $(this).removeClass('fa-volume-up');
             $(this).addClass('fa-volume-down');
-            this.soundList.intro.play();
         });
     };
 
-    //Removes the audio tag from the DOM when the off button is clicked
+    //Remove volume-down font awesome class and replace with volume-up
     this.handleAudioStop = function() {
         $('.volume-container').on('click', '.fa-volume-down', () => {
-            this.soundList.intro.pause();
             $(this).addClass('fa-volume-up');
             $(this).removeClass('fa-volume-down');
         });
@@ -216,7 +214,7 @@ function MediumGame() {
     }
 
     //Play sound on card hover
-    this.handleCardHover = function() {
+    this.handleElementHover = function() {
         $('.card, .fa, #button').mouseover( () => {
             this.soundList.blop.play();
         });

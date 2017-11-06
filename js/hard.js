@@ -3,7 +3,6 @@ function HardGame() {
     this.matchCount = 0;
     this.matchCounter = 0;
     this.attempts = 0;
-    this.gamesPlayed = 0;
     this.accuracy = 0;
     this.revertTime = 1500;
     this.clickedCardsList = [];
@@ -38,7 +37,7 @@ function HardGame() {
         this.handleModal();
         this.handleAudioPlay();
         this.handleAudioStop();
-        this.handleCardHover();
+        this.handleElementHover();
     };
 
     //Randomizes the deck of cards in the array
@@ -68,7 +67,7 @@ function HardGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
-        this.soundList.blop.play();
+        this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
             cardObj.revealSelf();
@@ -99,7 +98,6 @@ function HardGame() {
     //Win handler runs when all cards are matched and targets victory modal
     };
     this.playerWins = function() {
-        this.resetStats();
         this.showModal();
         this.hardLevelChange();
         this.soundList.victory.play();
@@ -123,7 +121,6 @@ function HardGame() {
 
     //Displays the stats on the DOM
     this.displayStats = function() {
-        $(".games-played").text(this.gamesPlayed);
         $(".attempts").text(this.attempts);
         $(".accuracy").text(this.accuracy);
     };
@@ -136,10 +133,10 @@ function HardGame() {
 
    //Resets all the stats back to its original state and flips the cards over
     this.resetStats = function() {
+        this.cardList = [];
         this.matchCount = 0;
         this.matchCounter = 0;
         this.attempts = 0;
-        this.gamesPlayed++;
         this.accuracy = 0;
         this.displayStats();
         this.resetGame();
@@ -163,8 +160,9 @@ function HardGame() {
 
     // Go back to easy level
     this.hardLevelChange = function() {
-        this.resetGame();
         setTimeout( () => {
+            this.resetStats();
+            $(".level").text('Easy');
             $('#game-container-hard').css('display', 'none');
             $('#game-container-easy').css('display', 'flex');
         }, this.revertTime);
@@ -172,10 +170,12 @@ function HardGame() {
 
     //Show Modal
     this.showModal = function() {
-        setTimeout(() => {
+        setTimeout( () => {
             $('#modal-shadow').show();
             $('#modal-content').show();
-            $('#modal-header>h1').text('WooHoo! You Did It!!!');
+            $('#modal-header>h1').text('Woohoo! You Did It!!');
+            $('#modal-body > img').attr('src', 'assets/images/victory.gif');
+            $('#button > p').text('close');
             $('#main-container').css('filter', 'blur(3px)');
         }, 500);
     }
@@ -204,9 +204,9 @@ function HardGame() {
     //Removes the audio tag from the DOM when the off button is clicked
     this.handleAudioStop = function() {
         $('.volume-container').on('click', '.fa-volume-down', () => {
-            this.soundList.intro.pause();
             $(this).addClass('fa-volume-up');
             $(this).removeClass('fa-volume-down');
+            this.soundList.intro.pause();
         });
     }
 
@@ -218,7 +218,7 @@ function HardGame() {
     }
 
     //Play sound on card hover
-    this.handleCardHover = function() {
+    this.handleElementHover = function() {
         $('.card, .fa, #button').mouseover( () => {
             this.soundList.blop.play();
         });

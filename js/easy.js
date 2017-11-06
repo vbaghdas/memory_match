@@ -4,9 +4,9 @@ function EasyGame() {
     this.matchCount = 0;
     this.matchCounter = 0;
     this.attempts = 0;
-    this.gamesPlayed = 0;
     this.accuracy = 0;
     this.revertTime = 2000;
+    this.level = 'Easy';
     this.imageList = [
         'assets/images/easy/front1.jpg',
         'assets/images/easy/front2.jpg',
@@ -31,10 +31,12 @@ function EasyGame() {
         this.createCards(this.shuffleCards());
         this.handleReset();
         this.updateStats();
+        this.showModalInfo();
+        this.handleModalInfo();
         this.handleModal();
         this.handleAudioPlay();
         this.handleAudioStop();
-        this.handleCardHover(); 
+        this.handleElementHover();
     };
 
     //Randomizes the deck of cards in the array
@@ -65,6 +67,7 @@ function EasyGame() {
 
     //Handles game logic, statistics counter, and reverts cards if there is no match
     this.handleCardClick = function(cardObj) {
+        this.handleCardRevealed(); 
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
             this.clickedCardsList.push(cardObj);
@@ -92,15 +95,18 @@ function EasyGame() {
                 }
             }
         }
-    
-    //Win handler runs when all cards are matched and targets victory modal
     };
+
+    //Win handler runs when all cards are matched and targets victory modal
     this.playerWins = function() {
-        this.resetStats();
         this.showModal();
         this.easyLevelChange();
         this.soundList.victory.play();
     };
+
+    this.handleCardRevealed = function() {
+        
+    }
 
     //Reverts the clicked cards list back to its original empty state
     this.clearClickedCardsList = function () {
@@ -120,7 +126,7 @@ function EasyGame() {
 
     //Displays the stats on the DOM
     this.displayStats = function() {
-        $(".games-played").text(this.gamesPlayed);
+        $(".level").text(this.level);
         $(".attempts").text(this.attempts);
         $(".accuracy").text(this.accuracy);
     };
@@ -133,10 +139,10 @@ function EasyGame() {
 
     //Resets all the stats back to its original state and flips the cards over
     this.resetStats = function() {
+        this.cardList = [];
         this.matchCount = 0;
         this.matchCounter = 0;
         this.attempts = 0;
-        this.gamesPlayed++;
         this.accuracy = 0;
         this.displayStats();
         this.resetGame();
@@ -160,19 +166,37 @@ function EasyGame() {
 
     // Go to next level medium
     this.easyLevelChange = function() {
-        this.resetGame();
         setTimeout( () => {
+            this.resetStats();
             $('#game-container-easy').css('display', 'none');
             $('#game-container-medium').css('display', 'flex');
+            $(".level").text('Medium');
         }, this.revertTime);
+    }
+
+    // Click Handler to open game instructions modal
+    this.handleModalInfo = function() {
+        $('.fa-info').click(this.showModalInfo.bind(this));
+    }
+
+    // Game instructions displays in Modal
+    this.showModalInfo = function() {
+        $('#modal-shadow').show();
+        $('#modal-content').show();
+        $('#modal-body > img').attr('src', 'assets/images/info.gif');
+        $('#modal-header > h1').text('Instructions');
+        $('#button > p').text('start game');
+        $('#main-container').css('filter', 'blur(3px)');
     }
 
     //Show Modal
     this.showModal = function() {
-        setTimeout(() => {
+        setTimeout( () => {
             $('#modal-shadow').show();
             $('#modal-content').show();
-            $('#modal-header>h1').text('Level One Complete!');
+            $('#modal-header>h1').text('First Level Complete!');
+            $('#modal-body > img').attr('src', 'assets/images/victory.gif');
+            $('#button > p').text('continue');
             $('#main-container').css('filter', 'blur(3px)');
         }, 500);
     }
@@ -189,7 +213,7 @@ function EasyGame() {
         $("#button").click(this.closeModal.bind(this));
     };
 
-    //Appends an audio tag to the DOM when the audio on button is clicked
+    //Remove volume-up font awesome class and replace with volume-down
     this.handleAudioPlay = function() {
         $('.volume-container').on('click', '.fa-volume-up', function() {
             $(this).removeClass('fa-volume-up');
@@ -197,7 +221,7 @@ function EasyGame() {
         });
     };
 
-    //Removes the audio tag from the DOM when the off button is clicked
+    //Remove volume-down font awesome class and replace with volume-up
     this.handleAudioStop = function() {
         $('.volume-container').on('click', '.fa-volume-down', function() {
             $(this).addClass('fa-volume-up');
@@ -213,7 +237,7 @@ function EasyGame() {
     }
 
     //Play sound on card hover
-    this.handleCardHover = function() {
+    this.handleElementHover = function() {
         $('.card, .fa, #button').mouseover( () => {
             this.soundList.blop.play();
         });
