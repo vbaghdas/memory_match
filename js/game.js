@@ -141,7 +141,7 @@ function Game() {
 
                     if(this.matchCount === this.cardList.length){
                         this.soundList.victory.play();
-                        setTimeout( ()=>{ this.victoryModal() }, 500);
+                        setTimeout( ()=>{ this.victoryModal() }, 1000);
                         setTimeout( ()=>{ this.levelChange() }, this.revertTime);
                     }
                 }
