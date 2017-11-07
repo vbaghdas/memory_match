@@ -4,6 +4,7 @@ function Game() {
     this.attempts = 0;
     this.accuracy = 0;
     this.revertTime = 2000;
+    this.soundDelay = 500;
     this.cardList = [];
     this.clickedCardsList = [];
     this.currentGame = 0;
@@ -137,7 +138,7 @@ function Game() {
                     this.clearClickedCardsList();
                     this.calculateAccuracy();
                     this.handleCardMatch();
-                    setTimeout( ()=>{ this.soundList.match.play() }, 500);
+                    setTimeout( ()=>{ this.soundList.match.play() }, this.soundDelay);
 
                     if(this.matchCount === this.cardList.length){
                         this.soundList.victory.play();
@@ -148,7 +149,7 @@ function Game() {
                 else {
                     this.attempts++;
                     this.calculateAccuracy();
-                    setTimeout( ()=>{ this.soundList.wrong.play() }, 500);
+                    setTimeout( ()=>{ this.soundList.wrong.play() }, this.soundDelay);
                     setTimeout(this.revertClickedCards.bind(this), this.revertTime);
                 }
             }
