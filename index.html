@@ -18,9 +18,7 @@
     <!-- Memory Match Game Scripts -->
     <script src="js/main.js"></script>
     <script src="js/card.js"></script>
-    <script src="js/easy.js"></script>
-    <script src="js/medium.js"></script>
-    <script src="js/hard.js"></script>
+    <script src="js/game.js"></script>
     
     <!-- Style Sheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -38,7 +36,7 @@
         </div>
         <div class="stats-container">
             <div class="level-container">
-                <p>Level: <span class="level"></span></p>
+                <p>Level: <span class="level">Easy</span></p>
             </div>
             <div class="attempts-container">
                 <p>Attempts: <span class="attempts"></span></p>
@@ -57,9 +55,7 @@
     <!-- End Top Container -->
 
     <!-- Game Containers -->
-    <div id="game-container-easy"></div>
-    <div id="game-container-medium"></div>
-    <div id="game-container-hard"></div>
+    <div id="game-container" class="easy-container"></div>
     <!-- End Game Container -->
 
     <!-- Right Container  -->
@@ -70,7 +66,7 @@
         </div>
         <div class="stats-container">
             <div class="level-container">
-                <p>Level: <span class="level"></span></p>
+                <p>Level: <span class="level">Easy</span></p>
             </div>
             <div class="attempts-container">
                 <p>Attempts: <span class="attempts"></span></p>
@@ -91,20 +87,21 @@
 </div>
 <!-- End Main Container -->
 
-<!-- Modal -->
+<!-- Start Modal -->
 <div id="modal-shadow"></div>
     <div id="modal-content">
         <div id="modal-header">
-            <h1></h1>
+            <h1>Instructions</h1>
         </div>
         <div id="modal-body">
             <img src="">
         </div>
         <div id="modal-footer">
-            <div id="button"><p>CONTINUE</p></div>
+            <div id="button"><p>start game</p></div>
         </div>
     </div>
 </div>
+<!-- End Modal -->
 
 </body>
 </html>

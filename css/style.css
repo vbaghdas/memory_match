@@ -130,46 +130,28 @@ i:hover {
                 START GAME LEVEL CONTAINERS
 
 ===========================================================*/
-#game-container-easy {
+.easy-container, .medium-container, .hard-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     cursor: pointer;
-    background: url(../assets/images/trolls.png) no-repeat;
-    background-size: 100% 75%;
-    background-position-y: center;
+    background: url(../assets/images/game-bg.png) no-repeat rgba(0,0,0,0.5);
+    background-size: contain;
+    background-position: 15%;
     width: 75%;
 }
-#game-container-medium {
-    display: none;
-    flex-direction: row;
-    flex-wrap: wrap;
-    cursor: pointer;
-    background: url(../assets/images/trolls.png) no-repeat;
-    background-size: 135% 100%;
-    width: 75%;
-}
-#game-container-hard {
-    display: none;
-    flex-direction: row;
-    flex-wrap: wrap;
-    cursor: pointer;
-    background: url(../assets/images/trolls.png) no-repeat;
-    background-size: 135% 100%;
-    width: 75%;
-}
-#game-container-easy .card, #game-container-easy .flip-container, 
-#game-container-easy .front, #game-container-easy .back {
+.easy-container .card, .easy-container .flip-container, 
+.easy-container .front, .easy-contianer .back {
     height: 12.5vw;
     width: 14.06vw;
 }
-#game-container-medium .card, #game-container-medium .flip-container, 
-#game-container-medium .front, #game-container-medium .back {
+.medium-container .card, .medium-container .flip-container, 
+.medium-container .front, .medium-container .back {
     height: 12.5vw;
     width: 11.25vw;
 }
-#game-container-hard .card, #game-container-hard .flip-container, 
-#game-container-hard .front, #game-container-hard .back {
+.hard-container .card, .hard-container .flip-container, 
+.hard-container .front, .hard-container .back {
     height: 12.5vw;
     width: 9.375vw;
 }
@@ -423,21 +405,21 @@ i:hover {
     }
 
     /* Start Game Level Containers */
-    #game-container-easy, #game-container-medium, #game-container-hard {
+    .easy-container, .medium-container, .hard-container {
         width: 100%;
     }
-    #game-container-easy .card, #game-container-easy .flip-container, 
-    #game-container-easy .front, #game-container-easy .back {
+    .easy-container .card, .easy-container .flip-container, 
+    .easy-container .front, .easy-container .back {
         height: 25vw;
         width: 25vw;
     }
-    #game-container-medium .card, #game-container-medium .flip-container, 
-    #game-container-medium .front, #game-container-medium .back {
+    .medium-container .card, .medium-container .flip-container, 
+    .medium-container .front, .medium-container .back {
         height: 25vw;
         width: 20vw;
     }
-    #game-container-hard .card, #game-container-hard .flip-container, 
-    #game-container-hard .front, #game-container-hard .back {
+    .hard-container .card, .hard-container .flip-container, 
+    .hard-container .front, .hard-container .back {
         height: 25vw;
         width: 16.6vw;
     }
