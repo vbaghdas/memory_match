@@ -178,7 +178,7 @@ function Game() {
             Calculate and Display Statistics
 
 ===========================================================*/
-    this.updateStats = function () {
+    this.updateStats = function() {
         this.displayStats();
     };
 
@@ -202,13 +202,15 @@ function Game() {
 
     this.resetGame = function() {
         $('.flip-container').removeClass('flipped');
-        $("#game-container").html('');
-        this.resetStats();
-        this.cardList = [];
-        this.createCards(this.shuffleCards(this.gameTypes[this.currentGame]));
+        setTimeout( () => {
+            $("#game-container").html('');
+            this.resetStats();
+            this.cardList = [];
+            this.createCards(this.shuffleCards(this.gameTypes[this.currentGame]));
+        }, this.revertTime);
     };
     
-    this.handleReset = function () {
+    this.handleReset = function() {
         $('.fa-refresh').click(this.resetGame.bind(this));
     };
 
@@ -233,7 +235,7 @@ function Game() {
                 Modal Handle and Display
 
 ===========================================================*/
-    this.victoryModal = function () {
+    this.victoryModal = function() {
         $('#modal-header > h1').text(this.modalHeader[this.currentGame]);
         $('#modal-body > img').attr('src', 'assets/images/victory.gif');
         $('#button > p').text('continue');
