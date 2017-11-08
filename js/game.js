@@ -124,9 +124,9 @@ function Game() {
     this.handleCardClick = function(cardObj) {
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
-            if (this.clickedCardsList[0] == cardObj){
-                return;
-            }
+            // if (this.clickedCardsList[0] == cardObj){
+            //     return;
+            // }
             this.clickedCardsList.push(cardObj);
             cardObj.revealSelf();
 
@@ -143,14 +143,14 @@ function Game() {
                     if(this.matchCount === this.cardList.length){
                         this.soundList.victory.play();
                         this.victoryModal();
-                        this.levelChange();
+                        setTimeout( ()=>{ this.levelChange() }, this.revertTime);
                     }
                 }
                 else {
                     this.attempts++;
                     this.calculateAccuracy();
                     setTimeout( ()=>{ this.soundList.wrong.play() }, this.soundDelay);
-                    setTimeout(this.revertClickedCards.bind(this), this.revertTime);
+                    setTimeout( this.revertClickedCards.bind(this), this.revertTime);
                 }
             }
         }
@@ -203,12 +203,9 @@ function Game() {
     };
 
     this.resetGame = function() {
-        $('.flip-container').removeClass('flipped');
-        setTimeout( () => {
-            $("#game-container").html('');
-            this.resetStats();
-            this.createCards(this.shuffleCards(this.gameTypes[this.currentGame]));
-        }, 300);
+        $("#game-container").html('');
+        this.resetStats();
+        this.createCards(this.shuffleCards(this.gameTypes[this.currentGame]));
     };
     
     this.handleReset = function() {
