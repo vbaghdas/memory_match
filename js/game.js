@@ -142,8 +142,8 @@ function Game() {
 
                     if(this.matchCount === this.cardList.length){
                         this.soundList.victory.play();
-                        setTimeout( ()=>{ this.victoryModal() }, this.revertTime);
-                        setTimeout( ()=>{ this.levelChange() }, this.revertTime);
+                        this.victoryModal();
+                        this.levelChange();
                     }
                 }
                 else {
@@ -168,7 +168,7 @@ function Game() {
     };
 
     this.handleCardMatch = function() {
-        $('.flipped > .front').fadeTo(this.revertTime, 0, function() {
+        $('.flipped > .front').fadeTo(500, 0, function() {
             $('.revealed').off();
         });
     };
@@ -197,7 +197,9 @@ function Game() {
         this.matchCounter = 0;
         this.attempts = 0;
         this.accuracy = 0;
+        this.cardList = [];
         this.displayStats();
+        this.clearClickedCardsList();
     };
 
     this.resetGame = function() {
@@ -205,9 +207,8 @@ function Game() {
         setTimeout( () => {
             $("#game-container").html('');
             this.resetStats();
-            this.cardList = [];
             this.createCards(this.shuffleCards(this.gameTypes[this.currentGame]));
-        }, this.revertTime);
+        }, 300);
     };
     
     this.handleReset = function() {
