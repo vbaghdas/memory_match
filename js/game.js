@@ -124,9 +124,9 @@ function Game() {
     this.handleCardClick = function(cardObj) {
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
-            // if (this.clickedCardsList[0] == cardObj){
-            //     return;
-            // }
+            if (this.clickedCardsList[0] == cardObj){
+                return;
+            }
             this.clickedCardsList.push(cardObj);
             cardObj.revealSelf();
 
