@@ -81,6 +81,7 @@ function Game() {
         this.handleAudioPlay();
         this.handleAudioStop();
         this.handleHoverSound();
+        this.handleClickSound();
     };
 
 /*==========================================================
@@ -289,6 +290,12 @@ function Game() {
     this.handleHoverSound = function() {
         $('.card, .fa, #button').mouseover( () => {
             this.soundList.blop.play();
+        });
+    };
+    
+    this.handleClickSound = function() {
+        $('#button').click( () => {
+            this.soundList.match.play();
         });
     };
 }
