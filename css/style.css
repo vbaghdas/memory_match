@@ -142,17 +142,17 @@ i:hover {
 }
 .easy-container .card, .easy-container .flip-container, 
 .easy-container .front, .easy-contianer .back {
-    height: 12.5vw;
+    height: 11.5vw;
     width: 14.06vw;
 }
 .medium-container .card, .medium-container .flip-container, 
 .medium-container .front, .medium-container .back {
-    height: 12.5vw;
+    height: 11.5vw;
     width: 11.25vw;
 }
 .hard-container .card, .hard-container .flip-container, 
 .hard-container .front, .hard-container .back {
-    height: 12.5vw;
+    height: 11.5vw;
     width: 9.375vw;
 }
 
