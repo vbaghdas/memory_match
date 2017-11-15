@@ -34,10 +34,7 @@
 }
 
 /* iPhone 5, 6, and 7 Portrait Resolution */
-@media only screen 
-and (min-width : 375px) 
-and (max-width : 667px) 
-and (orientation : portrait) {
+@media (min-height: 485px) and (max-width: 560px) {
     /* Start Main Level Containers */
     #main-container {
         display: block;
@@ -123,38 +120,36 @@ and (orientation : portrait) {
     }
 }
 
-/* MacBook 11inch Resolution */
-@media screen and (max-height: 567px) {
+/* Small Screen Resolution */
+@media (max-height: 567px) and (min-width: 768px) {
     /* Start Main Level Containers */
     #main-container {
-        width: 48.02%;
+        width: 37.36%;
     }
     .stats-container p {
-        font-size: 1vw;
+        font-size: .8vw;
     }
     
     /* Start Game Level Containers */
     .easy-container .card, .easy-container .flip-container, 
     .easy-container .front, .easy-contianer .back {
-        height: 9vw;
-        width: 9vw;
+        height: 7vw;
+        width: 7vw;
     }
     .medium-container .card, .medium-container .flip-container, 
     .medium-container .front, .medium-container .back {
-        height: 9vw;
-        width: 7.2vw;
+        height: 7vw;
+        width: 5.6vw;
     }
     .hard-container .card, .hard-container .flip-container, 
     .hard-container .front, .hard-container .back {
-        height: 9vw;
-        width: 6vw;
+        height: 7vw;
+        width: 4.67vw;
     }
 }
 
 /* iPhone 5, 6, and 7 Landscape Resolution */
-@media only screen 
-and (min-width : 414px) 
-and (max-width : 736px) {
+@media (max-height: 414px) and (max-width: 736px) {
     /* Start Main Level Containers */
     #main-container {
         width: 74.7%;

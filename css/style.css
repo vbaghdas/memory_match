@@ -18,7 +18,7 @@ body {
 #main-container {
     display: flex;
     margin: auto;
-    width: 61.5%;
+    width: 61.4%;
 }
 #top-container {
     width: 100%;
@@ -102,7 +102,7 @@ body {
     font-weight: 900;
     position: absolute;
     bottom: 1%;
-    right: 30%;
+    right: 32%;
     z-index: 1;
 }
 i:hover {
