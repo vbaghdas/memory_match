@@ -34,7 +34,7 @@
 }
 
 /* iPhone 5, 6, and 7 Portrait Resolution */
-@media (min-height: 485px) and (max-width: 560px) {
+@media (min-height: 480px) and (max-width: 560px) {
     /* Start Main Level Containers */
     #main-container {
         display: block;
@@ -126,6 +126,8 @@
     #main-container {
         width: 37.36%;
     }
+    
+    /* Start Stats Container */
     .stats-container p {
         font-size: .8vw;
     }
@@ -152,28 +154,28 @@
 @media (max-height: 414px) and (max-width: 736px) {
     /* Start Main Level Containers */
     #main-container {
-        width: 74.7%;
+        width: 61.4%;
     }
 
     /* Start Stats Container */
     .stats-container p {
-        font-size: 1.5vw;
+        font-size: 1.25vw;
     }
 
     /* Start Game Level Containers */
     .easy-container .card, .easy-container .flip-container, 
     .easy-container .front, .easy-contianer .back {
-        height: 14vw;
-        width: 14vw;
+        height: 11.5vw;
+        width: 11.5vw;
     }
     .medium-container .card, .medium-container .flip-container, 
     .medium-container .front, .medium-container .back {
-        height: 14vw;
-        width: 11.2vw;
+        height: 11.5vw;
+        width: 9.2vw;
     }
     .hard-container .card, .hard-container .flip-container, 
     .hard-container .front, .hard-container .back {
-        height: 14vw;
-        width: 9.33vw;
+        height: 11.5vw;
+        width: 7.67vw;
     }
 }
