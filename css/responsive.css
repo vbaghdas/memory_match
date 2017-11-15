@@ -34,7 +34,7 @@
 }
 
 /* iPhone 5, 6, and 7 Portrait Resolution */
-@media (min-height: 480px) and (max-width: 560px) {
+@media (min-height: 520px) and (max-width: 560px) {
     /* Start Main Level Containers */
     #main-container {
         display: block;
