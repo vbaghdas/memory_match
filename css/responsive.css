@@ -34,7 +34,10 @@
 }
 
 /* iPhone 5, 6, and 7 Portrait Resolution */
-@media (min-height: 568px) and (max-width: 568px) {
+@media only screen 
+and (min-width : 375px) 
+and (max-width : 667px) 
+and (orientation : portrait) {
     /* Start Main Level Containers */
     #main-container {
         display: block;
@@ -149,7 +152,9 @@
 }
 
 /* iPhone 5, 6, and 7 Landscape Resolution */
-@media (max-height: 414px) and (max-width: 736px) {
+@media only screen 
+and (min-width : 414px) 
+and (max-width : 736px) {
     /* Start Main Level Containers */
     #main-container {
         width: 74.7%;
