@@ -3,7 +3,7 @@ function Game() {
     this.matchCounter = 0;
     this.attempts = 0;
     this.accuracy = 0;
-    this.revertTime = 2000;
+    this.revertTime = 1750;
     this.soundDelay = 500;
     this.cardList = [];
     this.clickedCardsList = [];
@@ -125,9 +125,9 @@ function Game() {
     this.handleCardClick = function(cardObj) {
         this.soundList.flop.play();
         if(this.clickedCardsList.length < 2){
-            // if (this.clickedCardsList[0] == cardObj){
-            //     return;
-            // }
+            if (this.clickedCardsList[0] == cardObj){
+                return;
+            }
             this.clickedCardsList.push(cardObj);
             cardObj.revealSelf();
 
