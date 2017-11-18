@@ -235,21 +235,21 @@ function Game() {
 
 ===========================================================*/
     this.victoryModal = function() {
-        $('#modal-header > h1').text(this.modalHeader[this.currentGame]);
-        $('#modal-body > img').attr('src', 'assets/images/victory.gif');
-        $('#button > p').text('continue');
+        $('#modal-header h1').text(this.modalHeader[this.currentGame]);
+        $('#modal-body img').attr('src', 'assets/images/victory.gif');
+        $('#button p').text('continue');
         this.showModal();
     };
 
     this.infoModal = function() {
-        $('#modal-body > img').attr('src', 'assets/images/info.gif');
-        $('#modal-header > h1').text('Instructions');
-        $('#button > p').text('Start Game');
+        $('#modal-body img').attr('src', 'assets/images/info.gif');
+        $('#modal-header h1').text('Instructions');
+        $('#button p').text('Start Game');
         this.showModal();
     };
 
     this.showModal = function() {
-        $('#main-container').css('filter', 'blur(3px)');
+        // $('#main-container').css('filter', 'blur(3px)');
         $('#modal-shadow').show();
         $('#modal-content').show();
     };
@@ -274,14 +274,14 @@ function Game() {
 
 ===========================================================*/
     this.handleAudioPlay = function() {
-        $('.volume-container').on('click', '.fa-volume-up', () => {
+        $('.audio-btn').on('click', '.fa-volume-up', () => {
             $('.fa-volume-up').attr('class', 'fa fa-volume-down');
             this.soundList.intro.play();
         });
     };
 
     this.handleAudioStop = function() {
-        $('.volume-container').on('click', '.fa-volume-down', () => {
+        $('.audio-btn').on('click', '.fa-volume-down', () => {
             $('.fa-volume-down').attr('class', 'fa fa-volume-up');
             this.soundList.intro.pause();
         });

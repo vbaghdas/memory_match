@@ -19,89 +19,89 @@
     <script src="js/main.js"></script>
     <script src="js/card.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/responsive.js"></script>
     
     <!-- Style Sheet -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
  
-<!-- Main Container -->
-<div id="main-container">
+<!-- Start Main Container -->
+<div id="main-container" data-width="1280" data-height="960">
+    <div id="sub-container">
 
-    <!-- Top Container -->
-    <div id="top-container">
-        <div id="top-logo-container"></div>
-        <div class="volume-container">
-            <i class="fa fa-volume-up" aria-hidden="true"></i>
-        </div>
-        <div class="stats-container">
-            <div class="level-container">
-                <p>Level: <span class="level">Easy</span></p>
+            <!-- Top Container -->
+            <div id="top-container" style="display: none;">
+                <div id="top-bg"></div>
+                <div id="top-logo"></div>
+                <div id="top-audio" class="audio-btn">
+                    <i class="fa fa-volume-up"></i>
+                </div>
+                <div id="top-stats">
+                    <div class="level-container">
+                        <p>Level: <span class="level">Easy</span></p>
+                    </div>
+                    <div class="attempts-container">
+                        <p>Attempts: <span class="attempts"></span></p>
+                    </div>
+                    <div class="accuracy-container">
+                        <p>Accuracy: <span class="accuracy"></span>%</p>
+                    </div>
+                </div>
+                <div id="top-restart">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                </div>
+                <div id="top-info">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                </div>
             </div>
-            <div class="attempts-container">
-                <p>Attempts: <span class="attempts"></span></p>
+            
+            <!-- Right Container -->
+            <div id="right-container" style="display: block;">
+                <div id="right-bg"></div>
+                <div id="right-logo"></div>
+                <div id="right-audio" class="audio-btn">
+                    <i class="fa fa-volume-up"></i>
+                </div>
+                <div id="right-stats">
+                    <div class="level-container">
+                        <p>Level: <span class="level">Easy</span></p>
+                    </div>
+                    <div class="attempts-container">
+                        <p>Attempts: <span class="attempts"></span></p>
+                    </div>
+                    <div class="accuracy-container">
+                        <p>Accuracy: <span class="accuracy"></span>%</p>
+                    </div>
+                </div>
+                <div id="right-restart">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                </div>
+                <div id="right-info">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                </div>
             </div>
-            <div class="accuracy-container">
-                <p>Accuracy: <span class="accuracy"></span>%</p>
+            
+            <!-- Game Container -->
+            <div id="game-container" class="easy-container"></div>
+
+            <!-- Modal Container -->
+            <div id="modal-shadow"></div>
+            <div id="modal-content">
+                <div id="modal-header"><h1>Instructions</h1></div>
+                <div id="modal-body"><img src=""></div>
+                <div id="modal-footer">
+                    <div id="button"><p>start game</p></div>
+                </div>
             </div>
-        </div>
-        <div class="restart-container">
-            <i class="fa fa-refresh" aria-hidden="true"></i>
-        </div>
-        <div class="info-container">
-            <i class="fa fa-info" aria-hidden="true"></i>
-        </div>
+            </div>
     </div>
-    <!-- End Top Container -->
-
-    <!-- Game Containers -->
-    <div id="game-container" class="easy-container"></div>
-    <!-- End Game Container -->
-
-    <!-- Right Container  -->
-    <div id="right-container">
-        <div id="right-logo-container"></div>
-        <div class="volume-container">
-            <i class="fa fa-volume-up"></i>
-        </div>
-        <div class="stats-container">
-            <div class="level-container">
-                <p>Level: <span class="level">Easy</span></p>
-            </div>
-            <div class="attempts-container">
-                <p>Attempts: <span class="attempts"></span></p>
-            </div>
-            <div class="accuracy-container">
-                <p>Accuracy: <span class="accuracy"></span>%</p>
-            </div>
-        </div>
-        <div class="restart-container">
-            <i class="fa fa-refresh" aria-hidden="true"></i>
-        </div>
-        <div class="info-container">
-            <i class="fa fa-info" aria-hidden="true"></i>
-        </div>
-    </div>
-    <!-- End Right Container -->
-
 </div>
+
 <!-- End Main Container -->
 
 <!-- Start Modal -->
-<div id="modal-shadow"></div>
-    <div id="modal-content">
-        <div id="modal-header">
-            <h1>Instructions</h1>
-        </div>
-        <div id="modal-body">
-            <img src="">
-        </div>
-        <div id="modal-footer">
-            <div id="button"><p>start game</p></div>
-        </div>
-    </div>
-</div>
+
 <!-- End Modal -->
 
 </body>
